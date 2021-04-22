@@ -44,7 +44,7 @@ fun showFilesContent(files: Array<File>?, extensions: List<String>) {
 }
 
 fun copyFilesToDestination(filesToBeCopiedPaths: List<File>, outputFile: File) {
-    val outputFileWithMilSec = File(outputFile.absolutePath.plus("\\output${System.currentTimeMillis()}"))
+    val outputFileWithMilSec = File(outputFile.absolutePath.plus("/output${System.currentTimeMillis()}"))
     if (!outputFileWithMilSec.exists()) {
         outputFileWithMilSec.mkdirs()
     }
@@ -53,9 +53,9 @@ fun copyFilesToDestination(filesToBeCopiedPaths: List<File>, outputFile: File) {
         try {
             Files.copy(
                 file.toPath(),
-                File("${outputFileWithMilSec.absolutePath}\\${file.name}").toPath(), REPLACE_EXISTING
+                File("${outputFileWithMilSec.absolutePath}/${file.name}").toPath(), REPLACE_EXISTING
             )
-            println("${outputFileWithMilSec.absolutePath}\\${file.name}")
+            println("${outputFileWithMilSec.absolutePath}/${file.name}")
         } catch (e: Exception) {
             reports.add(e.message.toString())
         }
